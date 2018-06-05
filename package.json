@@ -1,0 +1,46 @@
+{
+  "name": "nodegame",
+  "version": "1.0.0",
+  "description": "node game under docker with react front for kingdom game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:client": "webpack --mode production",
+    "watch:server": "cross-env NODE_ENV=development webpack --watch --config webpack.config.js --config-name server",
+    "exec:server": "cross-env NODE_ENV=development nodemon src/server/index.js",
+    "dev:server": "cross-env NODE_ENV=development nodemon build/server.js",
+    "dev:client": "webpack-dev-server --open --mode development --config webpack.config.js ",
+    "start": "concurrently -k \"npm run watch:server\" \"npm run dev:server\" \"npm run dev:client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erochOnGit/nodeGame.git"
+  },
+  "author": "eroch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erochOnGit/nodeGame/issues"
+  },
+  "homepage": "https://github.com/erochOnGit/nodeGame#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.6",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
+    "@babel/preset-react": "^7.0.0-beta.49",
+    "babel-loader": "^8.0.0-beta.2",
+    "babel-polyfill": "^6.26.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.2",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
