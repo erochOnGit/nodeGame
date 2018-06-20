@@ -17,6 +17,7 @@ const universalRules = [
 
 module.exports = [
   {
+    name: "client",
     mode: "development",
     entry: "./src/web/index.js",
     output: {
@@ -42,13 +43,20 @@ module.exports = [
     mode: "development",
     target: "node",
     externals: [NodeExternals()],
-    entry: ["babel-polyfill", path.resolve(__dirname, "src/server/index.js")],
+    entry: [path.resolve(__dirname, "src/server/index.ts")],
     output: {
       filename: "server.js",
       path: path.resolve(__dirname, "build")
     },
     module: {
-      rules: [...universalRules]
+      rules: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          use: "ts-loader"
+        },
+        ...universalRules
+      ]
     }
   }
 ];
